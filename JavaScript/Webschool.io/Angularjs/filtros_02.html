@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body ng-app="beMean">
+<label for="seu-nome">Seu nome:</label>
+<input type="text" name="seu_nome" ng-model="nome">
+
+Olá, {{ nome | truncate:5:"..ler mais" }}
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	
+	var app = angular.module('beMean', []);
+
+	app.filter('reverseString', function(){
+		return function(text){
+			if (text) 
+				return text.split("").reverse().join("");
+		}
+	});
+
+	app.filter('truncate', function(){
+		return function(text, length, end){
+			if(text){
+
+				if( isNaN(length) ) length = 10; //Se não for número, padrão 10
+				if( end === undefined ) end = "..." //se não foi definido um padrão para o final, defina ...
+
+				//Se nao colocar isso, sempre retorna o texto com o limitador, 
+				//e so deve retornar limitador, se atingir o numero maximo de letras (else)
+				if( text.length <= length ) return text;
+				else return String(text).substring(0, length) + end;
+			}
+		}
+	});
+
+</script>
+</body>
+</html>

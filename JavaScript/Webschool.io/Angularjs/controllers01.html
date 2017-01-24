@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="beMean">
+
+<!--Aula sobre controllers-->
+<!--
+	Topics:
+		- Scope
+		- Controllers
+		- John Papa's Style Guide
+		- ng-repeat
+		- iteração em propriedades de objetos
+-->
+
+<head>
+	<title>Angular Webschool</title>
+</head>
+<body>
+
+	<div ng-controller="UserController as User">
+		<h1>{{ User.title }}</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th ng-repeat="(chave, valor) in User.users[0]" >{{chave | uppercase}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="usuario in User.users" >
+					<td ng-repeat="(chave, valor) in usuario" >{{valor}}</td>	
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div ng-controller="CourseController as Course">
+		<h1>{{ Course.title }}</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<!-- faz a iteração apenas no primeiro elemento =) -->
+					<th ng-repeat="(chave, valor) in Course.courses[0]" >{{chave | uppercase}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="curso in Course.courses" >
+					<td ng-repeat="(chave, valor) in curso">{{valor}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<script type="text/javascript" src="angular.min.js"></script>
+
+
+<script type="text/javascript">
+
+	var app 			= angular.module('beMean', []);
+
+	app.controller('UserController', UserController);
+	app.controller('CourseController', CourseController);
+
+	function UserController(){
+
+		vm 				= this;
+
+		vm.title 		= "Be Mean - Usuários";
+		vm.users 		= [
+			{'name' 		: 'Eric Vieira', 'email' : 'eu@ericvinicius.com.br'},
+			{'name' 		: 'Andre Willams', 'email' : 'eu@andre.com.br'},
+			{'name' 		: 'Tulio Vianna', 'email' : 'eu@tulio.com.br'},
+			{'name' 		: 'Luiz Pablo', 'email' : 'eu@pablo.com.br'}
+		];
+	};
+
+	function CourseController(){
+
+		vm 				= this;
+
+		vm.title 		= "Be Mean - Cursos";
+		vm.courses 		= [
+			{'name' 		: 'Laravel', 'teacher' : 'Eric Vieira'},
+			{'name' 		: 'JSF', 'teacher' : 'Andre Willams'},
+			{'name' 		: 'javascript', 'teacher' : 'Luiz Pablo'},
+			{'name' 		: 'Html', 'teacher' : 'Tulio Vianna'}
+		];
+	};
+
+</script>
+</body>
+</html>
