@@ -9,6 +9,7 @@
 		- John Papa's Style Guide
 		- ng-repeat
 		- iteração em propriedades de objetos
+		- Search input
 -->
 
 <head>
@@ -18,7 +19,7 @@
 
 	<div ng-controller="UserController as User">
 		<h1>{{ User.title }}</h1>
-
+		<label>Filtrar:<input type="text" name="filtro" ng-model="filtro"> </label>
 		<table>
 			<thead>
 				<tr>
@@ -26,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="usuario in User.users" >
+				<tr ng-repeat="usuario in User.users | orderBy:'name' | filter:filtro" >
 					<td ng-repeat="(chave, valor) in usuario" >{{valor}}</td>	
 				</tr>
 			</tbody>

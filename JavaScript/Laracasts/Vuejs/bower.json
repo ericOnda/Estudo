@@ -1,0 +1,20 @@
+{
+  "name": "Vuejs",
+  "homepage": "https://github.com/ericOnda/Estudo",
+  "authors": [
+    "ericonda"
+  ],
+  "description": "Estudos variados sobre vuejs",
+  "main": "index.html",
+  "keywords": [
+    "vue",
+    "estudos",
+    "ecmascript",
+    "web",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "vue": "2.1.10"
+  }
+}
